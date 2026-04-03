@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل توزيعات الصدف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --very-light-pink: #FFF0F5;
+            --cute-pink: #FFB6C1;
+            --text-dark: #5F4B4B;
+            --white: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--very-light-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* انميشن دخول الصفحة كاملة */
+        .page-container {
+            width: 90%;
+            max-width: 900px;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.2);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: pageEntry 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes pageEntry {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* حاوية الصورة بشكل عرضي */
+        .image-banner {
+            width: 100%;
+            height: 450px;
+            background-image: url('https://i.postimg.cc/43dP08pF/baby.jpg'); /* حط رابط صورتك هنا */
+            background-size: cover;
+            background-position: center;
+            border-radius: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.4s;
+        }
+
+        .info-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.6s;
+        }
+
+        h1 {
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #777;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .price-badge {
+            background-color: var(--very-light-pink);
+            color: var(--cute-pink);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 2px dashed var(--cute-pink);
+        }
+
+        .buttons-area {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-order {
+            background-color: var(--cute-pink);
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.4);
+        }
+
+        .btn-order:hover {
+            transform: translateY(-5px);
+            background-color: #ff99aa;
+        }
+
+        .btn-back {
+            border: 2px solid var(--cute-pink);
+            color: var(--cute-pink);
+        }
+
+        .btn-back:hover {
+            background-color: var(--cute-pink);
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* لمسة انميشن للعنوان */
+        .title-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 0px #fff; }
+            50% { text-shadow: 0 0 10px rgba(255, 182, 193, 0.5); }
+        }
+
+        @media (max-width: 768px) {
+            .image-banner { height: 250px; }
+            h1 { font-size: 1.8rem; }
+            .page-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="image-banner"></div>
+
+        <div class="info-section">
+            <h1 class="title-glow">توزيعات الصدفة الأنيقة ✨</h1>
+            <p class="description">
+                قطعة فنية من الجبس الطبيعي مصممة بعناية لتناسب أرقى مناسباتكم. 
+                تأتي بشكل صدفة بحرية ناعمة مع إمكانية إضافة الروائح العطرية أو الألوان حسب الطلب. 
+                مثالية لهدايا المواليد وحفلات الزواج.
+            </p>
+
+            <div class="price-badge">قطعة = 2 ﷼</div>
+
+            <div class="buttons-area">
+                <a href="https://wa.me/966576432250" class="btn btn-order">اطلب الآن عبر الواتساب</a>
+                <a href="index.html" class="btn btn-back">العودة للمتجر</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

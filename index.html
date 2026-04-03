@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر قطعة الفن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --very-light-pink: #FFF0F5;
+            --cute-pink: #FFB6C1;
+            --text-dark: #5F4B4B;
+            --white: #FFFFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--very-light-pink);
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- شريط العنوان العلوي --- */
+        .main-header {
+            position: fixed;
+            top: 20px;
+            background-color: var(--cute-pink);
+            padding: 15px 60px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .main-header h2 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: shine 4s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+
+        /* --- قسم الهيرو --- */
+        #hero-section {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+        }
+
+        .hero-content.title { animation-delay: 0.2s; }
+        .hero-content.description { animation-delay: 0.5s; }
+        .hero-content.button-area { animation-delay: 0.8s; }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .cute-text {
+            color: var(--cute-pink);
+            display: inline-block;
+            animation: pulseText 2s ease-in-out infinite;
+        }
+
+        .stars-emoji {
+            display: inline-block;
+            animation: pulseText 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin: 30px 0 50px 0;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-shop {
+            background-color: var(--cute-pink);
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.4);
+            animation: floatingButton 3s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-shop:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 182, 193, 0.6);
+            background-color: #ff99aa;
+        }
+
+        #shop-section {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--white);
+            z-index: 10;
+        }
+
+        .shop-title {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: titlePulse 2.5s ease-in-out infinite;
+        }
+
+        .products-grid {
+            display: flex;
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .product-box {
+            width: 240px;
+            height: 340px;
+            background: var(--very-light-pink);
+            border-radius: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--cute-pink);
+            opacity: 0;
+            transform: rotateY(-30deg) scale(0.8);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            overflow: hidden; 
+            position: relative;
+        }
+
+        .product-box:hover {
+            transform: scale(1.05) rotateY(0deg);
+            background-color: var(--white);
+            border-style: solid;
+            box-shadow: 0 25px 50px rgba(255, 182, 193, 0.4);
+        }
+
+        #box1 { background-image: url('https://i.postimg.cc/43dP08pF/baby.jpg'); background-size: cover; background-position: center; border-style: solid; }
+        #box2 { background-image: url('https://i.postimg.cc/5NsnmdCM/Whats-App-Image-2026-04-03-at-1-02-06-AM.jpg'); background-size: cover; background-position: center; border-style: solid; }
+        #box3 { background-image: url('https://i.postimg.cc/3xnC2Pdm/tnzyl.jpg'); background-size: cover; background-position: center; border-style: solid; }
+
+        .overlay-content {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 12px 25px;
+            border-radius: 20px;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 70%;
+        }
+
+        .box-text { font-weight: bold; color: var(--text-dark); font-size: 1.1rem; }
+
+        .wants-website {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--white);
+            border: 2px solid var(--cute-pink);
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 90;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: bounceIn 1s ease-out backwards 2s, sideFloat 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .wants-website:hover {
+            background-color: var(--cute-pink);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 85%;
+            position: relative;
+            animation: popUpAnim 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid var(--very-light-pink);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .btn-order-web {
+            background-color: #ff99aa;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseText { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.9; } }
+        @keyframes floatingButton { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes gradientBG { 0% { background-color: #FFF0F5; } 50% { background-color: #FFFAFA; } 100% { background-color: #FFF0F5; } }
+        @keyframes titlePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); color: var(--cute-pink); } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); } }
+        @keyframes sideFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes popUpAnim { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+        .hero-hide { opacity: 0; transform: scale(0.9) translateY(-50px); pointer-events: none; }
+        .animate-title { animation: slideDown 0.8s forwards, titlePulse 2.5s ease-in-out infinite 0.8s; }
+        .animate-box { animation: boxEntrance 0.8s forwards; }
+
+        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
+        @keyframes boxEntrance { to { opacity: 1; transform: rotateY(0) scale(1); } }
+
+        .back-btn {
+            margin-top: 40px;
+            background: none;
+            border: 1px solid var(--cute-pink);
+            color: var(--cute-pink);
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background-color: var(--cute-pink); color: white; }
+
+        @media (max-width: 768px) {
+            .main-header { padding: 10px 30px; top: 10px; }
+            .main-header h2 { font-size: 1.4rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .products-grid { flex-direction: column; overflow-y: auto; padding: 20px; height: 70vh; }
+            .product-box { width: 280px; min-height: 180px; flex-shrink: 0; }
+            #shop-section { justify-content: flex-start; padding-top: 80px; }
+            .overlay-content { bottom: 10px; padding: 5px 15px; }
+            .wants-website { bottom: 10px; left: 10px; font-size: 0.8rem; padding: 8px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h2>متجر قطعة الفن</h2>
+    </header>
+
+    <section id="hero-section">
+        <div class="hero-content title">
+            <h1>قطعة جبس <br> <span class="cute-text">كيوت</span> <br> لمناسباتكم السعيدة <span class="stars-emoji">✨</span></h1>
+        </div>
+
+        <div class="hero-content description">
+            <p>نصنع لكِ أجمل التوزيعات الجبسية المصنوعة يدوياً بحب، لتضفي لمسة سحرية وناعمة على حفلتك. اختاري التصميم اللي يناسب ذوقك!</p>
+        </div>
+
+        <div class="hero-content button-area">
+            <button class="btn-shop" onclick="openShop()">تسوقي الآن 🛍️</button>
+        </div>
+    </section>
+
+    <section id="shop-section">
+        <h2 class="shop-title" id="shop-title">اختر تصنيفك المفضل ✨</h2>
+        
+        <div class="products-grid">
+            <div class="product-box" id="box1" onclick="window.location.href='shell.html'">
+                <div class="overlay-content">
+                    <div class="box-text">توزيعات على شكل صدف</div>
+                </div>
+            </div>
+            
+            <div class="product-box" id="box2" onclick="window.location.href='star.html'">
+                <div class="overlay-content">
+                    <div class="box-text">توزيعات على شكل نجم</div>
+                </div>
+            </div>
+
+            <div class="product-box" id="box3" onclick="window.location.href='incense.html'">
+                <div class="overlay-content">
+                    <div class="box-text">توزيعات على شكل بخور</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="goBack()">العودة للرئيسية</button>
+    </section>
+
+    <div class="wants-website" onclick="openPopup()">
+         هل تريد موقعاً أنت أيضاً؟
+    </div>
+
+    <div class="popup-overlay" id="webPopup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup()">&times;</span>
+            <h3 style="color: var(--text-dark);">نصمم لك عالمك الخاص</h3>
+            <p style="color: #777; line-height: 1.6;">يمكنك طلب موقع بالشكل الذي تريده، بتصاميم عصرية وجذابة تناسب مشروعك!</p>
+            <a href="https://wa.me/966578550197" class="btn-order-web">اطلب الآن عبر واتساب</a>
+        </div>
+    </div>
+
+    <script>
+        function openShop() {
+            const hero = document.getElementById('hero-section');
+            const header = document.querySelector('.main-header');
+            const wantsWeb = document.querySelector('.wants-website');
+            
+            hero.classList.add('hero-hide');
+            header.style.opacity = '0';
+            header.style.transition = '0.5s';
+            wantsWeb.style.display = 'none';
+
+            setTimeout(() => {
+                hero.style.display = 'none';
+                header.style.display = 'none';
+                const shop = document.getElementById('shop-section');
+                shop.style.display = 'flex';
+                
+                document.getElementById('shop-title').classList.add('animate-title');
+                setTimeout(() => document.getElementById('box1').classList.add('animate-box'), 200);
+                setTimeout(() => document.getElementById('box2').classList.add('animate-box'), 400);
+                setTimeout(() => document.getElementById('box3').classList.add('animate-box'), 600);
+            }, 600);
+        }
+
+        function goBack() {
+            location.reload();
+        }
+
+        function openPopup() {
+            document.getElementById('webPopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('webPopup').style.display = 'none';
+        }
+
+        // إغلاق عند الضغط خارج المربع
+        window.onclick = function(event) {
+            const popup = document.getElementById('webPopup');
+            if (event.target == popup) {
+                closePopup();
+            }
+        }
+    </script>
+
+</body>
+</html>
