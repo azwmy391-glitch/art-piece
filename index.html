@@ -144,11 +144,19 @@
             box-sizing: border-box;
         }
 
+        /* تعديل العنوان ليدعم الأنميشن المستمر */
         .shop-title {
             font-size: 1.8rem;
             color: var(--text-dark);
             margin-bottom: 30px;
             text-align: center;
+            opacity: 0;
+            display: inline-block;
+        }
+
+        /* الكلاس الذي سيتم إضافته عبر التوجيه البرمجي */
+        .animate-title {
+            animation: fadeInSlideUp 0.8s forwards, pulseText 2s ease-in-out infinite 0.8s;
         }
 
         .products-grid {
@@ -201,14 +209,14 @@
             transform: translateX(-50%);
             background: var(--white);
             border: 2px solid var(--cute-pink);
-            padding: 1px 3px;
+            padding: 4px 10px;
             border-radius: 50px;
             cursor: pointer;
             z-index: 90;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             color: var(--text-dark);
             font-weight: bold;
-            font-size: 0.50rem;
+            font-size: 0.95rem;
             white-space: nowrap;
             animation: bounceIn 1s ease-out backwards 2s;
             transition: 0.3s;
@@ -229,18 +237,19 @@
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(5px);
-            padding: 20px;
+            padding: 15px;
         }
 
         .popup-content {
             background: var(--white);
-            padding: 30px;
+            padding: 25px;
             border-radius: 30px;
             text-align: center;
-            max-width: 350px;
-            width: 90%;
+            max-width: 320px;
+            width: 85%;
             position: relative;
             animation: popUpAnim 0.4s ease-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .close-popup {
@@ -261,6 +270,7 @@
             display: inline-block;
             margin-top: 15px;
             font-weight: bold;
+            width: 80%;
         }
 
         @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
@@ -271,7 +281,6 @@
         @keyframes popUpAnim { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .hero-hide { opacity: 0; transform: scale(0.9); pointer-events: none; }
-        .animate-title { animation: fadeInSlideUp 0.8s forwards; }
         .animate-box { animation: fadeInSlideUp 0.6s forwards; }
 
         .back-btn {
@@ -369,7 +378,9 @@
                 const shop = document.getElementById('shop-section');
                 shop.style.display = 'flex';
                 
+                // إضافة كلاس الانميشن المركب (ظهور + نبض مستمر) للعنوان
                 document.getElementById('shop-title').classList.add('animate-title');
+                
                 setTimeout(() => document.getElementById('box1').classList.add('animate-box'), 100);
                 setTimeout(() => document.getElementById('box2').classList.add('animate-box'), 200);
                 setTimeout(() => document.getElementById('box3').classList.add('animate-box'), 300);
