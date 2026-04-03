@@ -144,7 +144,6 @@
             box-sizing: border-box;
         }
 
-        /* تعديل العنوان ليدعم الأنميشن المستمر */
         .shop-title {
             font-size: 1.8rem;
             color: var(--text-dark);
@@ -154,7 +153,6 @@
             display: inline-block;
         }
 
-        /* الكلاس الذي سيتم إضافته عبر التوجيه البرمجي */
         .animate-title {
             animation: fadeInSlideUp 0.8s forwards, pulseText 2s ease-in-out infinite 0.8s;
         }
@@ -233,7 +231,6 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5);
             display: none;
-            /* تم تفعيل الفليكس هنا لضمان التوسيط التام */
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -251,7 +248,6 @@
             position: relative;
             animation: popUpAnim 0.4s ease-out;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            /* لضمان عدم وجود هوامش خارجية تعيق التوسيط */
             margin: auto;
         }
 
@@ -314,7 +310,7 @@
 
     <section id="hero-section">
         <div class="hero-content title">
-            <h1>قطعة جبس <br> <span class="cute-text">كيوت</span> <br> لمناسباتكم السعيدة <span class="stars-emoji">✨</span></h1>
+            <h1>قطعة جبس <br> <span class="cute-text">كيوت</span> <br> لمناسباتكم السعيدة </span></h1>
         </div>
 
         <div class="hero-content description">
@@ -394,7 +390,7 @@
         }
 
         function openPopup() {
-            // استخدام flex هنا هو السر لتفعيل التوسيط البرمجي
+            // هنا التعديل: جعل العرض flex بدلاً من block ليعمل التوسيط التلقائي
             document.getElementById('webPopup').style.display = 'flex';
         }
 
