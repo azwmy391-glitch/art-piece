@@ -202,12 +202,13 @@
 
         .wants-website {
             position: fixed;
-            bottom: 10px;
+            bottom: 15px;
+            /* التعديل هنا لضمان توسيط الزر بدقة */
             left: 50%;
             transform: translateX(-50%);
             background: var(--white);
             border: 2px solid var(--cute-pink);
-            padding: 4px 10px;
+            padding: 6px 15px;
             border-radius: 50px;
             cursor: pointer;
             z-index: 90;
@@ -218,17 +219,18 @@
             white-space: nowrap;
             animation: bounceIn 1s ease-out backwards 2s;
             transition: 0.3s;
+            /* نلغي أي تأثير للـ RTL هنا */
+            direction: ltr; 
         }
 
         .wants-website:hover {
             background-color: var(--cute-pink);
             color: white;
-            bottom: 12px;
+            bottom: 18px;
         }
 
         .popup-overlay {
             position: fixed;
-            /* التعديل الجذري هنا لضمان التوسيط */
             inset: 0; 
             width: 100vw;
             height: 100vh;
@@ -250,7 +252,6 @@
             position: relative;
             animation: popUpAnim 0.4s ease-out;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            /* إلغاء أي هوامش قد تسبب إزاحة */
             margin: 0; 
         }
 
@@ -279,7 +280,7 @@
         @keyframes pulseText { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes floatingButton { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         @keyframes gradientBG { 0% { background-color: #FFF0F5; } 50% { background-color: #FFFAFA; } 100% { background-color: #FFF0F5; } }
-        @keyframes bounceIn { from { opacity: 0; transform: translateX(-50%) scale(0.5); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+        @keyframes bounceIn { from { opacity: 0; transform: translate(-50%, 20px) scale(0.5); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
         @keyframes popUpAnim { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .hero-hide { opacity: 0; transform: scale(0.9); pointer-events: none; }
@@ -301,7 +302,7 @@
             .product-box { width: 220px; height: 320px; }
             .box-text { font-size: 1.1rem; }
             .main-header h2 { font-size: 1.8rem; }
-            .wants-website { bottom: 20px; font-size: 1rem; }
+            .wants-website { bottom: 25px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -331,7 +332,7 @@
         <div class="products-grid">
             <div class="product-box" id="box1" onclick="window.location.href='shell.html'">
                 <div class="overlay-content">
-                    <div class="box-text">توزيعات صدف</div>
+                    <div class="box-text">توزيعات صصدف</div>
                 </div>
             </div>
             
@@ -393,9 +394,7 @@
         }
 
         function openPopup() {
-            const popup = document.getElementById('webPopup');
-            // التأكيد على وضعية الـ Flex برمجياً لضمان التوسيط
-            popup.style.display = 'flex';
+            document.getElementById('webPopup').style.display = 'flex';
         }
 
         function closePopup() {
