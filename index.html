@@ -261,16 +261,22 @@
             color: #aaa;
         }
 
-        .btn-order-web {
-            background-color: #ff99aa;
+        .btn-order {
+            background-color: var(--cute-pink);
             color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
             text-decoration: none;
             display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
-            width: 80%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.4);
+            animation: floatingButton 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+            width: 90%;
             box-sizing: border-box;
         }
 
@@ -374,7 +380,7 @@
             <span class="close-popup" onclick="closePopup()">&times;</span>
             <h3 style="color: var(--text-dark); margin-top: 0;">نصمم لك عالمك الخاص</h3>
             <p style="color: #777; font-size: 0.9rem;">يمكنك طلب موقع بالشكل الذي تريده، بتصاميم جذابة تناسب مشروعك!</p>
-            <a href="https://wa.me/966578550197" class="btn btn-order">اطلب الآن عبر الواتساب</a>
+            <a href="https://wa.me/966578550197" class="btn-order">اطلب الآن عبر الواتساب</a>
         </div>
     </div>
 
