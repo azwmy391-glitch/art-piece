@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* --- شريط العنوان العلوي --- */
         .main-header {
             position: fixed;
             top: 20px;
@@ -66,7 +65,6 @@
             100% { left: 150%; }
         }
 
-        /* --- قسم الهيرو --- */
         #hero-section {
             width: 90%;
             max-width: 800px;
@@ -97,12 +95,6 @@
             color: var(--cute-pink);
             display: inline-block;
             animation: pulseText 2s ease-in-out infinite;
-        }
-
-        .stars-emoji {
-            display: inline-block;
-            animation: pulseText 2s ease-in-out infinite;
-            animation-delay: 0.5s;
         }
 
         .hero-content p {
@@ -160,12 +152,13 @@
         .products-grid {
             display: flex;
             gap: 20px;
-            perspective: 1000px;
             flex-wrap: wrap;
             justify-content: center;
-            max-height: 60vh;
+            max-height: 70vh;
             overflow-y: auto;
             padding: 10px;
+            width: 100%;
+            max-width: 900px;
         }
 
         .product-box {
@@ -189,6 +182,8 @@
         #box1 { background-image: url('https://i.postimg.cc/43dP08pF/baby.jpg'); background-size: cover; background-position: center; }
         #box2 { background-image: url('https://i.postimg.cc/5NsnmdCM/Whats-App-Image-2026-04-03-at-1-02-06-AM.jpg'); background-size: cover; background-position: center; }
         #box3 { background-image: url('https://i.postimg.cc/3xnC2Pdm/tnzyl.jpg'); background-size: cover; background-position: center; }
+        #box4 { background-image: url('https://i.postimg.cc/ZKCCmfWz/IMG-20261004-WA0001.jpg'); background-size: cover; background-position: center; }
+        #box5 { background-image: url('https://i.postimg.cc/dtLLFWLp/IMG-20261004-WA0002.jpg'); background-size: cover; background-position: center; }
 
         .overlay-content {
             background-color: rgba(255, 255, 255, 0.9);
@@ -203,7 +198,6 @@
         .wants-website {
             position: fixed;
             bottom: 15px;
-            /* التعديل هنا لضمان توسيط الزر بدقة */
             left: 50%;
             transform: translateX(-50%);
             background: var(--white);
@@ -219,7 +213,6 @@
             white-space: nowrap;
             animation: bounceIn 1s ease-out backwards 2s;
             transition: 0.3s;
-            /* نلغي أي تأثير للـ RTL هنا */
             direction: ltr; 
         }
 
@@ -299,7 +292,7 @@
         @media (min-width: 769px) {
             .hero-content h1 { font-size: 3.5rem; }
             .hero-content p { font-size: 1.3rem; }
-            .product-box { width: 220px; height: 320px; }
+            .product-box { width: 180px; height: 260px; }
             .box-text { font-size: 1.1rem; }
             .main-header h2 { font-size: 1.8rem; }
             .wants-website { bottom: 25px; font-size: 1rem; }
@@ -332,24 +325,36 @@
         <div class="products-grid">
             <div class="product-box" id="box1" onclick="window.location.href='shell.html'">
                 <div class="overlay-content">
-                    <div class="box-text">توزيعات صصدف</div>
+                    <div class="box-text">صدف</div>
                 </div>
             </div>
             
             <div class="product-box" id="box2" onclick="window.location.href='star.html'">
                 <div class="overlay-content">
-                    <div class="box-text">توزيعات نجم</div>
+                    <div class="box-text">نجم</div>
                 </div>
             </div>
 
             <div class="product-box" id="box3" onclick="window.location.href='incense.html'">
                 <div class="overlay-content">
-                    <div class="box-text">توزيعات بخور</div>
+                    <div class="box-text">بخور</div>
+                </div>
+            </div>
+
+            <div class="product-box" id="box4" onclick="window.location.href='rose-candle.html'">
+                <div class="overlay-content">
+                    <div class="box-text">شمعة الورد</div>
+                </div>
+            </div>
+
+            <div class="product-box" id="box5" onclick="window.location.href='shell-candle.html'">
+                <div class="overlay-content">
+                    <div class="box-text">شمعة الصدف</div>
                 </div>
             </div>
         </div>
 
-        <button class="back-btn" onclick="goBack()">العودة للرئيسية</button>
+        <button class="back-btn" onclick="goBackToHome()">العودة للرئيسية</button>
     </section>
 
     <div class="wants-website" onclick="openPopup()">
@@ -386,11 +391,34 @@
                 setTimeout(() => document.getElementById('box1').classList.add('animate-box'), 100);
                 setTimeout(() => document.getElementById('box2').classList.add('animate-box'), 200);
                 setTimeout(() => document.getElementById('box3').classList.add('animate-box'), 300);
+                setTimeout(() => document.getElementById('box4').classList.add('animate-box'), 400);
+                setTimeout(() => document.getElementById('box5').classList.add('animate-box'), 500);
             }, 600);
         }
 
-        function goBack() {
-            location.reload();
+        window.onload = function() {
+            if(window.location.hash === '#shop') {
+                document.getElementById('hero-section').style.display = 'none';
+                document.querySelector('.main-header').style.display = 'none';
+                document.querySelector('.wants-website').style.display = 'none';
+                
+                const shop = document.getElementById('shop-section');
+                shop.style.display = 'flex';
+                
+                document.getElementById('shop-title').style.opacity = '1';
+                
+                for(let i = 1; i <= 5; i++) {
+                    let box = document.getElementById('box' + i);
+                    if(box) {
+                        box.style.opacity = '1';
+                        box.style.transform = 'scale(1)';
+                    }
+                }
+            }
+        };
+
+        function goBackToHome() {
+            window.location.href = window.location.pathname;
         }
 
         function openPopup() {
