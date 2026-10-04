@@ -129,11 +129,12 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             background-color: var(--white);
             z-index: 10;
-            padding: 20px;
+            padding: 60px 20px 100px 20px;
             box-sizing: border-box;
+            overflow-y: auto;
         }
 
         .shop-title {
@@ -154,8 +155,6 @@
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
-            max-height: 70vh;
-            overflow-y: auto;
             padding: 10px;
             width: 100%;
             max-width: 900px;
@@ -280,13 +279,16 @@
         .animate-box { animation: fadeInSlideUp 0.6s forwards; }
 
         .back-btn {
-            margin-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 40px;
             background: none;
             border: 1px solid var(--cute-pink);
             color: var(--cute-pink);
-            padding: 8px 20px;
+            padding: 10px 30px;
             border-radius: 20px;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
         }
 
         @media (min-width: 769px) {
@@ -296,6 +298,7 @@
             .box-text { font-size: 1.1rem; }
             .main-header h2 { font-size: 1.8rem; }
             .wants-website { bottom: 25px; font-size: 1rem; }
+            #shop-section { justify-content: center; padding: 20px; }
         }
     </style>
 </head>
@@ -325,19 +328,19 @@
         <div class="products-grid">
             <div class="product-box" id="box1" onclick="window.location.href='shell.html'">
                 <div class="overlay-content">
-                    <div class="box-text">صدف</div>
+                    <div class="box-text">توزيعات صدف</div>
                 </div>
             </div>
             
             <div class="product-box" id="box2" onclick="window.location.href='star.html'">
                 <div class="overlay-content">
-                    <div class="box-text">نجم</div>
+                    <div class="box-text">توزيعات نجم</div>
                 </div>
             </div>
 
             <div class="product-box" id="box3" onclick="window.location.href='incense.html'">
                 <div class="overlay-content">
-                    <div class="box-text">بخور</div>
+                    <div class="box-text">توزيعات بخور</div>
                 </div>
             </div>
 
