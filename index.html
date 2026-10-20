@@ -23,13 +23,13 @@
       <ul class="nav-links">
         <li><a href="index.html" data-testid="nav-link-home">الرئيسية</a></li>
         <li><a href="index.html#shop" data-testid="nav-link-shop">المتجر</a></li>
-        <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="nav-link-contact">تواصل</a></li>
+        <!-- تعديل: تغيير الرابط للنزول لقسم التواصل -->
+        <li><a href="#contact" data-testid="nav-link-contact">تواصل</a></li>
       </ul>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -41,13 +41,12 @@
           <p class="hero-text" data-testid="hero-text">توزيعات وشموع جبسية تُصبّ وتُلمّع وتُغلّف يدوياً قطعةً قطعة، لتصل ضيوفكم كتذكار فني صغير يبقى بعد انتهاء الفرح.</p>
           <div class="hero-cta">
             <a href="#shop" class="btn btn-gold" data-testid="hero-shop-btn">تسوّق التشكيلة</a>
-            <a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" class="btn btn-outline" data-testid="hero-whatsapp-btn">اطلب عبر واتساب</a>
+            <a href="https://wa.me/966576432250" target="_blank" rel="noopener" class="btn btn-outline" data-testid="hero-whatsapp-btn">اطلب عبر واتساب</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Marquee -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <span>صنع بحب <i>◆</i> توزيعات يدوية <i>◆</i> تغليف فاخر <i>◆</i> لمسة ذهبية <i>◆</i> ذكرى تبقى <i>◆</i></span>
@@ -55,12 +54,10 @@
       </div>
     </div>
 
-    <!-- Shop / Bento -->
     <section id="shop">
       <div class="container">
         <div class="reveal">
-          <span class="ornament">◆</span>
-          <h2 class="section-title" data-testid="shop-title">تشكيلتنا</h2>
+          <h2 class="section-title" data-testid="shop-title"><span class="ornament">◆</span> تشكيلتنا</h2>
           <p class="section-sub">خمس قطع نعتز بها، كل واحدة تُصنع يدوياً وتُغلّف لتليق بضيوفكم.</p>
         </div>
         <div class="bento">
@@ -88,34 +85,28 @@
       </div>
     </section>
 
-    <!-- Features -->
     <section>
       <div class="container">
         <div class="reveal">
-          <span class="ornament">◆</span>
-          <h2 class="section-title" data-testid="features-title">لماذا قطعة الفن؟</h2>
+          <h2 class="section-title" data-testid="features-title"><span class="ornament">◆</span> لماذا قطعة الفن؟</h2>
         </div>
         <div class="features">
           <div class="feature reveal" data-testid="feature-handmade">
-            <span class="diamond">◆</span>
-            <h3>صناعة يدوية</h3>
+            <h3><span class="ornament">◆</span> صناعة يدوية</h3>
             <p>كل قطعة تُصبّ في قوالبها وتُصقل وتُلمّع يدوياً، فلا توجد قطعتان متطابقتان تماماً.</p>
           </div>
           <div class="feature reveal d1" data-testid="feature-packaging">
-            <span class="diamond">◆</span>
-            <h3>تغليف فاخر</h3>
+            <h3><span class="ornament">◆</span> تغليف فاخر</h3>
             <p>علب وأقمشة وشرائط تُختار بعناية لتليق بمناسبتكم، مع إمكانية تخصيص الألوان.</p>
           </div>
           <div class="feature reveal d2" data-testid="feature-custom">
-            <span class="diamond">◆</span>
-            <h3>حسب مناسبتكم</h3>
+            <h3><span class="ornament">◆</span> حسب مناسبتكم</h3>
             <p>زواج، تخرج، ولادة أو استقبال — ننسّق القطعة والتغليف والبطاقة لتروي قصتكم.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Lifestyle -->
     <section>
       <div class="container reveal">
         <figure class="lifestyle-frame">
@@ -127,14 +118,13 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section>
+    <section id="contact">
       <div class="container reveal">
         <div class="cta-band">
           <span class="ornament">◆</span>
           <h2 data-testid="cta-title">جاهزون نحتفل معكم؟</h2>
           <p>أرسلوا لنا تفاصيل مناسبتكم والكمية المطلوبة، ونرد عليكم بالتنسيق والتفاصيل خلال يوم عمل.</p>
-          <a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" class="btn btn-gold" data-testid="cta-whatsapp-btn">
+          <a href="https://wa.me/966576432250" target="_blank" rel="noopener" class="btn btn-gold" data-testid="cta-whatsapp-btn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.2-.2-.2-.5-.3z"/></svg>
             اطلب عبر واتساب
           </a>
@@ -151,23 +141,16 @@
           <p>قطع جبسية فنية مصنوعة يدوياً لمناسباتكم السعيدة — من قالب الجبس إلى علبة الضيف.</p>
         </div>
         <div>
-          <h4>روابط</h4>
+          <h4>الصفحات</h4>
           <ul>
             <li><a href="index.html" data-testid="footer-link-home">الرئيسية</a></li>
             <li><a href="index.html#shop" data-testid="footer-link-shop">المتجر</a></li>
-            <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="footer-link-contact">تواصل</a></li>
+            <li><a href="#contact" data-testid="footer-link-contact">تواصل</a></li>
           </ul>
         </div>
         <div>
-          <h4>الطلب والتواصل</h4>
-          <ul>
-            <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="footer-whatsapp">واتساب: ‎+966 57 643 2250</a></li>
-          </ul>
-        </div>
-      </div>
       <div class="footer-bottom">
-        <span data-testid="footer-rights">© 2026 قطعة الفن — جميع الحقوق محفوظة</span>
-        <span>صنع بحب في السعودية</span>
+        <span data-testid="footer-rights">قطعة الفن — جميع الحقوق محفوظة</span>
       </div>
     </div>
   </footer>
@@ -181,7 +164,7 @@
       <button class="popup-close" data-testid="popup-close-btn" aria-label="إغلاق">✕</button>
       <h3>أعجبك الموقع؟</h3>
       <p>اطلب موقعاً أنيقاً مثل هذا لعرض منتجاتك واستقبال طلباتك عبر واتساب.</p>
-      <a href="https://wa.me/966578550197?text=مرحباً،%20أرغب%20بطلب%20موقع%20مثل%20«قطعة%20الفن»" target="_blank" rel="noopener" class="btn btn-gold" data-testid="popup-whatsapp-btn">تواصل عبر واتساب</a>
+      <a href="https://wa.me/966578550197" target="_blank" rel="noopener" class="btn btn-gold" data-testid="popup-whatsapp-btn">تواصل عبر واتساب</a>
     </div>
   </div>
 </body>

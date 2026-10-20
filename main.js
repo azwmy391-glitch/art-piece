@@ -38,4 +38,28 @@
     popup.addEventListener('click', function (e) { if (e.target === popup) popup.classList.remove('open'); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') popup.classList.remove('open'); });
   }
+
+  var overlay = document.createElement('div');
+  overlay.className = 'page-transition-overlay';
+  document.body.appendChild(overlay);
+
+  var animatedLinks = document.querySelectorAll('.bento-item, .other-item');
+  animatedLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      var targetUrl = this.href;
+      overlay.classList.add('active');
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 400); 
+    });
+  });
+
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted || overlay.classList.contains('active')) {
+      overlay.classList.remove('active');
+    }
+  });
+
 })();
