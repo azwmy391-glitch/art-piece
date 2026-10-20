@@ -1,458 +1,188 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>متجر قطعة الفن</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Vibes&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --very-light-pink: #FFF0F5;
-            --cute-pink: #FFB6C1;
-            --text-dark: #5F4B4B;
-            --white: #FFFFFF;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--very-light-pink);
-            animation: gradientBG 15s ease infinite;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden !important; 
-            max-width: 100vw;
-        }
-
-        .main-header {
-            position: fixed;
-            top: 20px;
-            background-color: var(--cute-pink);
-            padding: 10px 40px;
-            border-radius: 50px;
-            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
-            z-index: 100;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .main-header h2 {
-            margin: 0;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 2;
-        }
-
-        .main-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transform: skewX(-25deg);
-            animation: shine 4s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { left: -150%; }
-            100% { left: 150%; }
-        }
-
-        #hero-section {
-            width: 90%;
-            max-width: 800px;
-            text-align: center;
-            position: relative;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 50px;
-        }
-
-        .hero-content {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSlideUp 1s ease-out forwards;
-        }
-
-        .hero-content.title { animation-delay: 0.2s; }
-        .hero-content.description { animation-delay: 0.5s; }
-        .hero-content.button-area { animation-delay: 0.8s; }
-
-        .hero-content h1 {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin: 0;
-            color: var(--text-dark);
-        }
-
-        .cute-text {
-            color: var(--cute-pink);
-            display: inline-block;
-            animation: pulseText 2s ease-in-out infinite;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin: 20px 0 40px 0;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-shop {
-            background-color: var(--cute-pink);
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.4);
-            animation: floatingButton 3s ease-in-out infinite;
-            transition: transform 0.3s ease;
-        }
-
-        #shop-section {
-            position: fixed;
-            top: 0; bottom: 0; left: 0; right: 0; 
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: var(--white);
-            z-index: 10;
-            padding: 60px 20px 100px 20px; 
-            box-sizing: border-box;
-            overflow-y: auto; 
-            overflow-x: hidden; 
-            width: 100%;
-        }
-
-        .shop-title {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            margin-bottom: 30px;
-            text-align: center;
-            opacity: 0;
-            display: inline-block;
-        }
-
-        .animate-title {
-            animation: fadeInSlideUp 0.8s forwards, pulseText 2s ease-in-out infinite 0.8s;
-        }
-
-        .products-grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 10px;
-            width: 100%;
-            max-width: 900px;
-            box-sizing: border-box;
-        }
-
-        .product-box {
-            width: 140px;
-            height: 200px;
-            background: var(--very-light-pink);
-            border-radius: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            border: 2px solid var(--cute-pink);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            overflow: hidden; 
-            position: relative;
-        }
-
-        #box1 { background-image: url('https://i.postimg.cc/43dP08pF/baby.jpg'); background-size: cover; background-position: center; }
-        #box2 { background-image: url('https://i.postimg.cc/5NsnmdCM/Whats-App-Image-2026-04-03-at-1-02-06-AM.jpg'); background-size: cover; background-position: center; }
-        #box3 { background-image: url('https://i.postimg.cc/3xnC2Pdm/tnzyl.jpg'); background-size: cover; background-position: center; }
-        #box4 { background-image: url('https://i.postimg.cc/ZKCCmfWz/IMG-20261004-WA0001.jpg'); background-size: cover; background-position: center; }
-        #box5 { background-image: url('https://i.postimg.cc/dtLLFWLp/IMG-20261004-WA0002.jpg'); background-size: cover; background-position: center; }
-
-        .overlay-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 8px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .box-text { font-weight: bold; color: var(--text-dark); font-size: 0.8rem; }
-
-        .wants-website {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--white);
-            border: 2px solid var(--cute-pink);
-            padding: 6px 15px;
-            border-radius: 50px;
-            cursor: pointer;
-            z-index: 90;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            color: var(--text-dark);
-            font-weight: bold;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            animation: bounceIn 1s ease-out backwards 2s;
-            transition: 0.3s;
-            direction: ltr; 
-        }
-
-        .wants-website:hover {
-            background-color: var(--cute-pink);
-            color: white;
-            bottom: 18px;
-        }
-
-        .popup-overlay {
-            position: fixed;
-            inset: 0; 
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .popup-content {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 30px;
-            text-align: center;
-            max-width: 320px;
-            width: 85%;
-            position: relative;
-            animation: popUpAnim 0.4s ease-out;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin: 0; 
-        }
-
-        .close-popup {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        .btn-order {
-            background-color: var(--cute-pink);
-            color: white;
-            padding: 15px 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.4);
-            animation: floatingButton 3s ease-in-out infinite;
-            transition: transform 0.3s ease;
-            margin-top: 20px;
-            width: 90%;
-            box-sizing: border-box;
-        }
-
-        @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulseText { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes floatingButton { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes gradientBG { 0% { background-color: #FFF0F5; } 50% { background-color: #FFFAFA; } 100% { background-color: #FFF0F5; } }
-        @keyframes bounceIn { from { opacity: 0; transform: translate(-50%, 20px) scale(0.5); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
-        @keyframes popUpAnim { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .hero-hide { opacity: 0; transform: scale(0.9); pointer-events: none; }
-        .animate-box { animation: fadeInSlideUp 0.6s forwards; }
-
-        .back-btn {
-            margin-top: 30px;
-            margin-bottom: 40px; 
-            background: none;
-            border: 1px solid var(--cute-pink);
-            color: var(--cute-pink);
-            padding: 10px 30px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        @media (min-width: 769px) {
-            .hero-content h1 { font-size: 3.5rem; }
-            .hero-content p { font-size: 1.3rem; }
-            .product-box { width: 180px; height: 260px; }
-            .box-text { font-size: 1.1rem; }
-            .main-header h2 { font-size: 1.8rem; }
-            .wants-website { bottom: 25px; font-size: 1rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر قطعة الفن</title>
+  <meta name="description" content="قطعة الفن — توزيعات وشموع جبسية مصنوعة يدوياً بحب لمناسباتكم السعيدة. صدف، نجوم، مباخر وشموع فاخرة تُطلب عبر الواتساب.">
+  <meta property="og:title" content="قطعة الفن — توزيعات جبسية مصنوعة يدوياً">
+  <meta property="og:description" content="قطع جبسية فنية تضيف لمسة راقية لحفلاتكم ومناسباتكم — صناعة يدوية وتغليف فاخر.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://i.postimg.cc/43dP08pF/baby.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
 <body>
 
-    <header class="main-header">
-        <h2>متجر قطعة الفن</h2>
-    </header>
+  <header class="navbar" data-testid="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo" data-testid="nav-logo">قطعة الفن</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-testid="nav-link-home">الرئيسية</a></li>
+        <li><a href="index.html#shop" data-testid="nav-link-shop">المتجر</a></li>
+        <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="nav-link-contact">تواصل</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <section id="hero-section">
-        <div class="hero-content title">
-            <h1>قطعة جبس <br> <span class="cute-text">كيوت</span> <br> لمناسباتكم السعيدة </h1>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="kicker" data-testid="hero-kicker">صناعة يدوية بحب</span>
+          <h1 class="hero-title" data-testid="hero-title">
+            <span class="line"><span>قطعة جبس <em class="accent">كيوت</em></span></span>
+            <span class="line"><span>لمناسباتكم السعيدة</span></span>
+          </h1>
+          <p class="hero-text" data-testid="hero-text">توزيعات وشموع جبسية تُصبّ وتُلمّع وتُغلّف يدوياً قطعةً قطعة، لتصل ضيوفكم كتذكار فني صغير يبقى بعد انتهاء الفرح.</p>
+          <div class="hero-cta">
+            <a href="#shop" class="btn btn-gold" data-testid="hero-shop-btn">تسوّق التشكيلة</a>
+            <a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" class="btn btn-outline" data-testid="hero-whatsapp-btn">اطلب عبر واتساب</a>
+          </div>
         </div>
-
-        <div class="hero-content description">
-            <p>نصنع لكِ أجمل التوزيعات الجبسية المصنوعة يدوياً بحب، لتضفي لمسة سحرية وناعمة على حفلتك.</p>
-        </div>
-
-        <div class="hero-content button-area">
-            <button class="btn-shop" onclick="openShop()">تسوقي الآن 🛍️</button>
-        </div>
+      </div>
     </section>
 
-    <section id="shop-section">
-        <h2 class="shop-title" id="shop-title">اختر تصنيفك المفضل ✨</h2>
-        
-        <div class="products-grid">
-            <div class="product-box" id="box1" onclick="window.location.href='shell.html'">
-                <div class="overlay-content">
-                    <div class="box-text">توزيعات صدف</div>
-                </div>
-            </div>
-            
-            <div class="product-box" id="box2" onclick="window.location.href='star.html'">
-                <div class="overlay-content">
-                    <div class="box-text">توزيعات نجم</div>
-                </div>
-            </div>
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>صنع بحب <i>◆</i> توزيعات يدوية <i>◆</i> تغليف فاخر <i>◆</i> لمسة ذهبية <i>◆</i> ذكرى تبقى <i>◆</i></span>
+        <span>صنع بحب <i>◆</i> توزيعات يدوية <i>◆</i> تغليف فاخر <i>◆</i> لمسة ذهبية <i>◆</i> ذكرى تبقى <i>◆</i></span>
+      </div>
+    </div>
 
-            <div class="product-box" id="box3" onclick="window.location.href='incense.html'">
-                <div class="overlay-content">
-                    <div class="box-text">توزيعات بخور</div>
-                </div>
-            </div>
-
-            <div class="product-box" id="box4" onclick="window.location.href='rose-candle.html'">
-                <div class="overlay-content">
-                    <div class="box-text">شمعة الورد</div>
-                </div>
-            </div>
-
-            <div class="product-box" id="box5" onclick="window.location.href='shell-candle.html'">
-                <div class="overlay-content">
-                    <div class="box-text">شمعة الصدف</div>
-                </div>
-            </div>
+    <!-- Shop / Bento -->
+    <section id="shop">
+      <div class="container">
+        <div class="reveal">
+          <span class="ornament">◆</span>
+          <h2 class="section-title" data-testid="shop-title">تشكيلتنا</h2>
+          <p class="section-sub">خمس قطع نعتز بها، كل واحدة تُصنع يدوياً وتُغلّف لتليق بضيوفكم.</p>
         </div>
-
-        <button class="back-btn" onclick="goBackToHome()">العودة للرئيسية</button>
+        <div class="bento">
+          <a href="shell.html" class="bento-item blob-1 reveal" data-testid="bento-shell">
+            <img src="https://i.postimg.cc/43dP08pF/baby.jpg" alt="علبة تذكار على شكل صدفة ناعمة" loading="lazy">
+            <div class="bento-info"><h3>توزيعات الصدف</h3><span class="bento-price">2 ريال / للقطعة</span><span class="bento-line"></span></div>
+          </a>
+          <a href="star.html" class="bento-item blob-2 reveal d1" data-testid="bento-star">
+            <img src="https://i.postimg.cc/5NsnmdCM/Whats-App-Image-2026-04-03-at-1-02-06-AM.jpg" alt="نجمة بيضاء لامعة" loading="lazy">
+            <div class="bento-info"><h3>توزيعات النجم</h3><span class="bento-price">2 ريال / للقطعة</span><span class="bento-line"></span></div>
+          </a>
+          <a href="incense.html" class="bento-item blob-3 reveal d2" data-testid="bento-incense">
+            <img src="https://i.postimg.cc/3xnC2Pdm/tnzyl.jpg" alt="مبخرة جبسية صغيرة بتفاصيل دقيقة" loading="lazy">
+            <div class="bento-info"><h3>توزيعات البخور</h3><span class="bento-price">2.5 ريال / للقطعة</span><span class="bento-line"></span></div>
+          </a>
+          <a href="rose-candle.html" class="bento-item blob-4 reveal d1" data-testid="bento-rose-candle">
+            <img src="https://i.postimg.cc/ZKCCmfWz/IMG-20261004-WA0001.jpg" alt="شمعة بيضاء على هيئة وردة متفتحة" loading="lazy">
+            <div class="bento-info"><h3>شمعة الورد</h3><span class="bento-price">2.5 ريال / للقطعة</span><span class="bento-line"></span></div>
+          </a>
+          <a href="shell-candle.html" class="bento-item blob-5 reveal d2" data-testid="bento-shell-candle">
+            <img src="https://i.postimg.cc/dtLLFWLp/IMG-20261004-WA0002.jpg" alt="صدفة جبسية بيضاء منحوتة بعناية" loading="lazy">
+            <div class="bento-info"><h3>شمعة الصدف</h3><span class="bento-price">2.5 ريال / للقطعة</span><span class="bento-line"></span></div>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <div class="wants-website" onclick="openPopup()">
-        هل تريد موقعاً أنت أيضاً؟
-    </div>
-
-    <div class="popup-overlay" id="webPopup">
-        <div class="popup-content">
-            <span class="close-popup" onclick="closePopup()">&times;</span>
-            <h3 style="color: var(--text-dark); margin-top: 0;">نصمم لك عالمك الخاص</h3>
-            <p style="color: #777; font-size: 0.9rem;">يمكنك طلب موقع بالشكل الذي تريده، بتصاميم جذابة تناسب مشروعك!</p>
-            <a href="https://wa.me/966578550197" class="btn-order">اطلب الآن عبر الواتساب</a>
+    <!-- Features -->
+    <section>
+      <div class="container">
+        <div class="reveal">
+          <span class="ornament">◆</span>
+          <h2 class="section-title" data-testid="features-title">لماذا قطعة الفن؟</h2>
         </div>
+        <div class="features">
+          <div class="feature reveal" data-testid="feature-handmade">
+            <span class="diamond">◆</span>
+            <h3>صناعة يدوية</h3>
+            <p>كل قطعة تُصبّ في قوالبها وتُصقل وتُلمّع يدوياً، فلا توجد قطعتان متطابقتان تماماً.</p>
+          </div>
+          <div class="feature reveal d1" data-testid="feature-packaging">
+            <span class="diamond">◆</span>
+            <h3>تغليف فاخر</h3>
+            <p>علب وأقمشة وشرائط تُختار بعناية لتليق بمناسبتكم، مع إمكانية تخصيص الألوان.</p>
+          </div>
+          <div class="feature reveal d2" data-testid="feature-custom">
+            <span class="diamond">◆</span>
+            <h3>حسب مناسبتكم</h3>
+            <p>زواج، تخرج، ولادة أو استقبال — ننسّق القطعة والتغليف والبطاقة لتروي قصتكم.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lifestyle -->
+    <section>
+      <div class="container reveal">
+        <figure class="lifestyle-frame">
+          <img src="https://images.pexels.com/photos/36027418/pexels-photo-36027418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="طاولة مناسبة مرتبة بتوزيعات أنيقة بألوان كريمية" loading="lazy">
+          <figcaption class="lifestyle-quote">
+            <p>«كل قطعة تُصبّ وتُلمّع وتُغلّف بأيدينا»</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <div class="container reveal">
+        <div class="cta-band">
+          <span class="ornament">◆</span>
+          <h2 data-testid="cta-title">جاهزون نحتفل معكم؟</h2>
+          <p>أرسلوا لنا تفاصيل مناسبتكم والكمية المطلوبة، ونرد عليكم بالتنسيق والتفاصيل خلال يوم عمل.</p>
+          <a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" class="btn btn-gold" data-testid="cta-whatsapp-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.2-.2-.2-.5-.3z"/></svg>
+            اطلب عبر واتساب
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" data-testid="footer-logo">قطعة الفن</a>
+          <p>قطع جبسية فنية مصنوعة يدوياً لمناسباتكم السعيدة — من قالب الجبس إلى علبة الضيف.</p>
+        </div>
+        <div>
+          <h4>روابط</h4>
+          <ul>
+            <li><a href="index.html" data-testid="footer-link-home">الرئيسية</a></li>
+            <li><a href="index.html#shop" data-testid="footer-link-shop">المتجر</a></li>
+            <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="footer-link-contact">تواصل</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>الطلب والتواصل</h4>
+          <ul>
+            <li><a href="https://wa.me/966576432250?text=مرحباً،%20أرغب%20بالاستفسار%20عن%20التوزيعات" target="_blank" rel="noopener" data-testid="footer-whatsapp">واتساب: ‎+966 57 643 2250</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-testid="footer-rights">© 2026 قطعة الفن — جميع الحقوق محفوظة</span>
+        <span>صنع بحب في السعودية</span>
+      </div>
     </div>
+  </footer>
 
-    <script>
-        function openShop() {
-            const hero = document.getElementById('hero-section');
-            const header = document.querySelector('.main-header');
-            const wantsWeb = document.querySelector('.wants-website');
-            
-            hero.classList.add('hero-hide');
-            header.style.opacity = '0';
-            wantsWeb.style.display = 'none';
-
-            setTimeout(() => {
-                hero.style.display = 'none';
-                header.style.display = 'none';
-                const shop = document.getElementById('shop-section');
-                shop.style.display = 'flex';
-                
-                document.getElementById('shop-title').classList.add('animate-title');
-                
-                setTimeout(() => document.getElementById('box1').classList.add('animate-box'), 100);
-                setTimeout(() => document.getElementById('box2').classList.add('animate-box'), 200);
-                setTimeout(() => document.getElementById('box3').classList.add('animate-box'), 300);
-                setTimeout(() => document.getElementById('box4').classList.add('animate-box'), 400);
-                setTimeout(() => document.getElementById('box5').classList.add('animate-box'), 500);
-            }, 600);
-        }
-
-        function checkUrlForShop() {
-            if(window.location.hash === '#shop') {
-                document.getElementById('hero-section').style.display = 'none';
-                document.querySelector('.main-header').style.display = 'none';
-                document.querySelector('.wants-website').style.display = 'none';
-                
-                const shop = document.getElementById('shop-section');
-                shop.style.display = 'flex';
-                
-                document.getElementById('shop-title').style.opacity = '1';
-                
-                for(let i = 1; i <= 5; i++) {
-                    let box = document.getElementById('box' + i);
-                    if(box) {
-                        box.style.opacity = '1';
-                        box.style.transform = 'scale(1)';
-                    }
-                }
-            }
-        }
-
-        checkUrlForShop();
-        window.addEventListener('hashchange', checkUrlForShop);
-
-        function goBackToHome() {
-            window.location.href = window.location.pathname;
-        }
-
-        function openPopup() {
-            document.getElementById('webPopup').style.display = 'flex';
-        }
-
-        function closePopup() {
-            document.getElementById('webPopup').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const popup = document.getElementById('webPopup');
-            if (event.target == popup) {
-                closePopup();
-            }
-        }
-    </script>
-
+  <button class="site-cta-fab" data-testid="popup-open-btn" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/></svg>
+    اطلب موقع مثل هذا
+  </button>
+  <div class="popup" id="site-popup" role="dialog" aria-modal="true" aria-hidden="true" data-testid="site-popup">
+    <div class="popup-card">
+      <button class="popup-close" data-testid="popup-close-btn" aria-label="إغلاق">✕</button>
+      <h3>أعجبك الموقع؟</h3>
+      <p>اطلب موقعاً أنيقاً مثل هذا لعرض منتجاتك واستقبال طلباتك عبر واتساب.</p>
+      <a href="https://wa.me/966578550197?text=مرحباً،%20أرغب%20بطلب%20موقع%20مثل%20«قطعة%20الفن»" target="_blank" rel="noopener" class="btn btn-gold" data-testid="popup-whatsapp-btn">تواصل عبر واتساب</a>
+    </div>
+  </div>
 </body>
 </html>
